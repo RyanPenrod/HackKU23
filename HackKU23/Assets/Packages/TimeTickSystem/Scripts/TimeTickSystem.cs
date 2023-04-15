@@ -30,6 +30,7 @@ public class TimeTickSystem : MonoBehaviour {
             tickTimer -= TICK_TIMER_MAX;
             tick++;
             if (tick % onTickFrequency == 0) {
+                Debug.Log(tick);
                 if (OnTick != null) OnTick(this, new OnTickEventArgs { tick = tick });
             }
         }
