@@ -12,8 +12,7 @@ public class StalkGrow : MonoBehaviour
     private Vector3 mousePosition;
     private float aimDir;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // Get mouse position
         mousePosition = UtilsClass.GetMouseWorldPosition();
@@ -30,6 +29,12 @@ public class StalkGrow : MonoBehaviour
         // Initializtions
         localTicks = 0;
         TimeTickSystem.OnTick += TimeTickSystem_OnTick;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
     }
 
     // Update is called once per frame
