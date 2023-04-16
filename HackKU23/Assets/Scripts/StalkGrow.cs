@@ -83,6 +83,7 @@ public class StalkGrow : MonoBehaviour
     {
         if(transform.position.y >= gameOverHeight){
             Debug.Log("You Won!");
+            SoundManagerScript.PlaySound("cheer");
             Instantiate(flowerPrefab, transform.position, Quaternion.identity);
             var playAganButton = Instantiate(playAgainButtonPrefab, new Vector3(0f, 90f, 0f), Quaternion.identity);
             playAganButton.transform.SetParent (canvas.transform,false);
@@ -93,7 +94,7 @@ public class StalkGrow : MonoBehaviour
     
     private IEnumerator TempSpeedUp()
     {
-        SoundManagerScript.PlaySound("crunch");
+        SoundManagerScript.PlaySound("1up");
         stalkManager.GetComponent<StalkManager>().ticksToGrow = 5;
         stalkManager.GetComponent<StalkManager>().activeSpeedBoost = true;
         yield return new WaitForSeconds(speedBoostDuration);
