@@ -7,6 +7,7 @@ using CodeMonkey.Utils;
 public class StalkGrow : MonoBehaviour
 {
     [SerializeField] private Transform stalkSegmentPrefab;
+    [SerializeField] private Transform stalkArrowPrefab;
 
     private float localTicks;
     private Vector3 mousePosition;
@@ -34,7 +35,8 @@ public class StalkGrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        var arrow = Instantiate(stalkArrowPrefab, transform.position, transform.rotation);
+        arrow.transform.parent = gameObject.transform;
     }
 
     // Update is called once per frame
@@ -60,6 +62,11 @@ public class StalkGrow : MonoBehaviour
 
             // Generate new position for next segment which is towards mouse
             Vector3 newPos = direction.normalized + transform.position;
+
+            while(transform.childCount > 1)
+            {
+                DestroyImmediate(transform.GetChild(1).gameObject);
+            }
 
             // Create new segment using new position and current rotation
             Instantiate(stalkSegmentPrefab, newPos, transform.rotation);
