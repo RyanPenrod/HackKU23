@@ -10,7 +10,8 @@ public class Seed : MonoBehaviour
     void Start()
     {
         Vector3 pos = transform.position + new Vector3(0f, 1.5f, 0f);
-        Instantiate(stalkSegmentPrefab, pos, Quaternion.identity);
+        var stalk = Instantiate(stalkSegmentPrefab, pos, Quaternion.identity);
+        stalk.transform.parent = gameObject.transform;
     }
 
     // Update is called once per frame

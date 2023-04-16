@@ -17,11 +17,11 @@ public class GrowDirection : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             targetRotation = initialRotation * Quaternion.Euler(0f, 0f, -maxRotationAngle);
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow))
         {
             targetRotation = initialRotation * Quaternion.Euler(0f, 0f, maxRotationAngle);
         }

@@ -8,6 +8,7 @@ public class StalkGrow : MonoBehaviour
 {
     [SerializeField] private Transform stalkSegmentPrefab;
     [SerializeField] private Transform stalkArrowPrefab;
+    [SerializeField] private Transform flowerPrefab;
 
     private float localTicks;
     private Vector3 mousePosition;
@@ -27,12 +28,13 @@ public class StalkGrow : MonoBehaviour
     {
         var arrow = Instantiate(stalkArrowPrefab, transform.position, transform.rotation);
         arrow.transform.parent = gameObject.transform;
+        CheckGameOver();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
@@ -57,5 +59,15 @@ public class StalkGrow : MonoBehaviour
 
         // Increment ticks
         localTicks++;
+    }
+
+    private void CheckGameOver()
+    {
+        if(transform.position.y >= 10f){
+            Debug.Log("You Won!");
+            Instantiate(flowerPrefab, transform.position, Quaternion.identity);
+            TimeTickSystem.OnTick -= TimeTickSystem_OnTick;
+            DestroyImmediate(gameObject);
+        }
     }
 }
