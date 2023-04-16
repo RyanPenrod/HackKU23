@@ -135,7 +135,7 @@ MonoBehaviour:
   stalkArrowPrefab: {fileID: 1764929962277329466, guid: d0381bfa67c7a49efbf847186234fb93, type: 3}
   flowerPrefab: {fileID: 4723663238927680254, guid: 5fd3cacfde3c14724964259274114b81, type: 3}
   playAgainButtonPrefab: {fileID: 5089675518625710669, guid: 0a27fb57096fe4dbeb10a70af331d91e, type: 3}
-  speedBoostDuration: 6
+  speedBoostDuration: 4
   gameOverHeight: 53
 --- !u!61 &7385403696282479317
 BoxCollider2D:

@@ -57,7 +57,7 @@ public class StalkGrow2 : MonoBehaviour
 
         if(stalkManager.transform.GetComponent<StalkManager>().activeSpeedBoost)
         {
-            if(localTicks >= 5 && localTicks < 10)
+            if(localTicks >= 3 && localTicks < 10)
             {
                 Debug.Log("grow 5");
 
