@@ -40,6 +40,16 @@ public class StalkGrow : MonoBehaviour
 
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+
+        if (collision.gameObject.CompareTag("Bee"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
         if(localTicks < 1)
