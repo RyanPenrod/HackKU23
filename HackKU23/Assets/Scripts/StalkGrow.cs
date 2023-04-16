@@ -9,7 +9,9 @@ public class StalkGrow : MonoBehaviour
     [SerializeField] private Transform stalkSegmentPrefab;
     [SerializeField] private Transform stalkArrowPrefab;
     [SerializeField] private Transform flowerPrefab;
-
+    [SerializeField] private RectTransform playAgainButtonPrefab;
+    
+    private GameObject canvas;
     private float localTicks;
     private Vector3 mousePosition;
     private float aimDir;
@@ -17,6 +19,7 @@ public class StalkGrow : MonoBehaviour
     void Awake()
     {
         // Initializtions
+        canvas = GameObject.Find("Canvas");
         localTicks = 0;
         TimeTickSystem.OnTick += TimeTickSystem_OnTick;
         Camera.main.transform.position = transform.position;
@@ -66,6 +69,8 @@ public class StalkGrow : MonoBehaviour
         if(transform.position.y >= 10f){
             Debug.Log("You Won!");
             Instantiate(flowerPrefab, transform.position, Quaternion.identity);
+            var playAganButton = Instantiate(playAgainButtonPrefab, new Vector3(0f, 90f, 0f), Quaternion.identity);
+            playAganButton.transform.SetParent (canvas.transform,false);
             TimeTickSystem.OnTick -= TimeTickSystem_OnTick;
             DestroyImmediate(gameObject);
         }

@@ -132,3 +132,5 @@ MonoBehaviour:
   stalkSegmentPrefab: {fileID: 2935502986798400441}
   stalkArrowPrefab: {fileID: 1764929962277329466, guid: d0381bfa67c7a49efbf847186234fb93, type: 3}
   flowerPrefab: {fileID: 4723663238927680254, guid: 5fd3cacfde3c14724964259274114b81, type: 3}
+  playAgainButtonPrefab: {fileID: 5089675518625710669, guid: 0a27fb57096fe4dbeb10a70af331d91e, type: 3}
+  canvasPrefab: {fileID: 5501680958162038033, guid: 514df0c76fcac4a90a48856778f8ed9f, type: 3}
