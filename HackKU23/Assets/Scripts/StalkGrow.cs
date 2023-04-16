@@ -11,6 +11,8 @@ public class StalkGrow : MonoBehaviour
     [SerializeField] private Transform flowerPrefab;
     [SerializeField] private RectTransform playAgainButtonPrefab;
     [SerializeField] private Transform stalkManager;
+    [SerializeField] private int speedBoostDuration;
+    [SerializeField] private float gameOverHeight;
     
     private GameObject canvas;
     private float localTicks;
@@ -77,7 +79,7 @@ public class StalkGrow : MonoBehaviour
 
     private void CheckGameOver()
     {
-        if(transform.position.y >= 10f){
+        if(transform.position.y >= gameOverHeight){
             Debug.Log("You Won!");
             Instantiate(flowerPrefab, transform.position, Quaternion.identity);
             var playAganButton = Instantiate(playAgainButtonPrefab, new Vector3(0f, 90f, 0f), Quaternion.identity);
@@ -91,7 +93,7 @@ public class StalkGrow : MonoBehaviour
     {
         stalkManager.GetComponent<StalkManager>().ticksToGrow = 5;
         stalkManager.GetComponent<StalkManager>().activeSpeedBoost = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(speedBoostDuration);
         Debug.Log("We get ran");
         stalkManager.GetComponent<StalkManager>().ticksToGrow = 10;
         stalkManager.GetComponent<StalkManager>().activeSpeedBoost = false;

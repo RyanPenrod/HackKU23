@@ -136,6 +136,8 @@ MonoBehaviour:
   flowerPrefab: {fileID: 4723663238927680254, guid: 5fd3cacfde3c14724964259274114b81, type: 3}
   playAgainButtonPrefab: {fileID: 5089675518625710669, guid: 0a27fb57096fe4dbeb10a70af331d91e, type: 3}
   stalkManager: {fileID: 7853739556919888530, guid: add9a31c5abff4e928756b903365f201, type: 3}
+  speedBoostDuration: 6
+  gameOverHeight: 53
 --- !u!61 &7385403696282479317
 BoxCollider2D:
   m_ObjectHideFlags: 0
