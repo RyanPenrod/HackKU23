@@ -44,7 +44,7 @@ public class StalkGrow : MonoBehaviour
             Quaternion newRotation = transform.GetChild(1).transform.rotation;
 
             // Generate new position for next segment which is towards mouse
-            Vector3 newPos = (newRotation * Vector3.up).normalized + transform.position;
+            Vector3 newPos = (newRotation * Vector3.up).normalized * 1.5f + transform.position;
 
             while(transform.childCount > 1)
             {
