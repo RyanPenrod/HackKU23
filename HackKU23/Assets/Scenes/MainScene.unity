@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1639e105f1a243545bda0df879fd6773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTickFrequency: 3
+  onTickFrequency: 1
 --- !u!4 &549620200
 Transform:
   m_ObjectHideFlags: 0
@@ -458,8 +458,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648494239}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0094, y: -0.1337, z: 0}
-  m_LocalScale: {x: 1.7974565, y: 1.0876935, z: 1.5467315}
+  m_LocalPosition: {x: -0.2, y: 16.6, z: 0}
+  m_LocalScale: {x: 1.7974565, y: 4.9040093, z: 1.5467315}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 879842458}
@@ -625,6 +625,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.5882353
       objectReference: {fileID: 0}
+    - target: {fileID: 2935502986798400439, guid: 06c8ae5f855e643e08a72813254b8fae, type: 3}
+      propertyPath: growDirection
+      value: 
+      objectReference: {fileID: 4139988856423946642, guid: d0381bfa67c7a49efbf847186234fb93, type: 3}
     - target: {fileID: 2935502986798400439, guid: 06c8ae5f855e643e08a72813254b8fae, type: 3}
       propertyPath: stalkArrowPrefab
       value: 

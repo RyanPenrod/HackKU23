@@ -15,21 +15,11 @@ public class StalkGrow : MonoBehaviour
 
     void Awake()
     {
-        // Get mouse position
-        mousePosition = UtilsClass.GetMouseWorldPosition();
-
-        // Get direction from object to mouse
-        Vector2 direction = new Vector2(
-            mousePosition.x - transform.position.x,
-            mousePosition.y - transform.position.y
-            );
-
-        // Set up direction towards mouse
-        transform.up = direction;
-
         // Initializtions
         localTicks = 0;
         TimeTickSystem.OnTick += TimeTickSystem_OnTick;
+        Camera.main.transform.position = transform.position;
+        Camera.main.transform.position += new Vector3(0, 0, -10);
     }
 
     // Start is called before the first frame update
@@ -42,26 +32,19 @@ public class StalkGrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Debug for checking direction towards mouse
-        Debug.DrawLine(transform.position, mousePosition, Color.green);
+        
     }
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
         if(localTicks < 1)
         {
-            // Get mouse position
-            mousePosition = UtilsClass.GetMouseWorldPosition();
 
-            // Get direction towards mouse
-            Vector3 direction = new Vector3(
-                mousePosition.x - transform.position.x,
-                mousePosition.y - transform.position.y,
-                0
-            );
+            // Get rotation from arrow
+            Quaternion newRotation = transform.GetChild(1).transform.rotation;
 
             // Generate new position for next segment which is towards mouse
-            Vector3 newPos = direction.normalized + transform.position;
+            Vector3 newPos = (newRotation * Vector3.up).normalized + transform.position;
 
             while(transform.childCount > 1)
             {
@@ -69,7 +52,7 @@ public class StalkGrow : MonoBehaviour
             }
 
             // Create new segment using new position and current rotation
-            Instantiate(stalkSegmentPrefab, newPos, transform.rotation);
+            Instantiate(stalkSegmentPrefab, newPos, newRotation);
         }
 
         // Increment ticks
