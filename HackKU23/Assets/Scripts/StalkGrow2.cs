@@ -21,11 +21,9 @@ public class StalkGrow2 : MonoBehaviour
     {
         // Initializtions
         canvas = GameObject.Find("Canvas");
-        stalkManager = GameObject.Find("StalkManager");
+        stalkManager = GameObject.Find("StalkManager2");
         localTicks = 0;
         TimeTickSystem.OnTick += TimeTickSystem_OnTick;
-        Camera.main.transform.position = transform.position;
-        Camera.main.transform.position += new Vector3(0, 0, -10);
     }
 
     // Start is called before the first frame update

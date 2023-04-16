@@ -25,7 +25,7 @@ public class StalkGrow : MonoBehaviour
         localTicks = 0;
         TimeTickSystem.OnTick += TimeTickSystem_OnTick;
         Camera.main.transform.position = transform.position;
-        Camera.main.transform.position += new Vector3(0, 0, -10);
+        Camera.main.transform.position += new Vector3(-10, 0, -10);
     }
 
     // Start is called before the first frame update
