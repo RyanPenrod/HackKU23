@@ -31,7 +31,7 @@ public class TimeTickSystem : MonoBehaviour {
             tick++;
             if (tick % onTickFrequency == 0) {
                 if(tick % 10 == 0){
-                    Debug.Log(tick);
+                    //Debug.Log(tick);
                 }
                 if (OnTick != null) OnTick(this, new OnTickEventArgs { tick = tick });
             }

@@ -10,10 +10,10 @@ public class StalkGrow : MonoBehaviour
     [SerializeField] private Transform stalkArrowPrefab;
     [SerializeField] private Transform flowerPrefab;
     [SerializeField] private RectTransform playAgainButtonPrefab;
-    [SerializeField] private Transform stalkManager;
     [SerializeField] private int speedBoostDuration;
     [SerializeField] private float gameOverHeight;
     
+    private GameObject stalkManager;
     private GameObject canvas;
     private float localTicks;
 
@@ -21,6 +21,7 @@ public class StalkGrow : MonoBehaviour
     {
         // Initializtions
         canvas = GameObject.Find("Canvas");
+        stalkManager = GameObject.Find("StalkManager");
         localTicks = 0;
         TimeTickSystem.OnTick += TimeTickSystem_OnTick;
         Camera.main.transform.position = transform.position;
@@ -54,26 +55,59 @@ public class StalkGrow : MonoBehaviour
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
-        if(localTicks == stalkManager.GetComponent<StalkManager>().ticksToGrow)
+        Debug.Log("boost : " + stalkManager.transform.GetComponent<StalkManager>().activeSpeedBoost);
+
+        if(stalkManager.transform.GetComponent<StalkManager>().activeSpeedBoost)
         {
-            SoundManagerScript.PlaySound("grow");
-
-            // Get rotation from arrow
-            Quaternion newRotation = transform.GetChild(1).transform.rotation;
-
-            // Generate new position for next segment which is towards arrow
-            Vector3 newPos = (newRotation * Vector3.up).normalized * 1.5f + transform.position;
-
-            while(transform.childCount > 1)
+            if(localTicks == 5)
             {
-                DestroyImmediate(transform.GetChild(1).gameObject);
+                Debug.Log("grow 5");
+
+                SoundManagerScript.PlaySound("grow");
+
+                // Get rotation from arrow
+                Quaternion newRotation = transform.GetChild(1).transform.rotation;
+
+                // Generate new position for next segment which is towards arrow
+                Vector3 newPos = (newRotation * Vector3.up).normalized * 1.5f + transform.position;
+
+                while(transform.childCount > 1)
+                {
+                    DestroyImmediate(transform.GetChild(1).gameObject);
+                }
+
+                // Create new segment using new position and current rotation
+                Instantiate(stalkSegmentPrefab, newPos, newRotation);
+
+                TimeTickSystem.OnTick -= TimeTickSystem_OnTick;
             }
-
-            // Create new segment using new position and current rotation
-            Instantiate(stalkSegmentPrefab, newPos, newRotation);
-
-            TimeTickSystem.OnTick -= TimeTickSystem_OnTick;
         }
+        else
+        {
+            if(localTicks == 10)
+            {
+                Debug.Log("grow 10");
+
+                SoundManagerScript.PlaySound("grow");
+
+                // Get rotation from arrow
+                Quaternion newRotation = transform.GetChild(1).transform.rotation;
+
+                // Generate new position for next segment which is towards arrow
+                Vector3 newPos = (newRotation * Vector3.up).normalized * 1.5f + transform.position;
+
+                while(transform.childCount > 1)
+                {
+                    DestroyImmediate(transform.GetChild(1).gameObject);
+                }
+
+                // Create new segment using new position and current rotation
+                Instantiate(stalkSegmentPrefab, newPos, newRotation);
+
+                TimeTickSystem.OnTick -= TimeTickSystem_OnTick;
+            }
+        }
+        
 
         // Increment ticks
         localTicks++;
@@ -95,11 +129,8 @@ public class StalkGrow : MonoBehaviour
     private IEnumerator TempSpeedUp()
     {
         SoundManagerScript.PlaySound("1up");
-        stalkManager.GetComponent<StalkManager>().ticksToGrow = 5;
-        stalkManager.GetComponent<StalkManager>().activeSpeedBoost = true;
-        yield return new WaitForSeconds(speedBoostDuration);
-        Debug.Log("We get ran");
-        stalkManager.GetComponent<StalkManager>().ticksToGrow = 10;
-        stalkManager.GetComponent<StalkManager>().activeSpeedBoost = false;
+        stalkManager.transform.GetComponent<StalkManager>().speedBoostTicksLeft += speedBoostDuration;
+        Debug.Log("user ticks: " + stalkManager.transform.GetComponent<StalkManager>().speedBoostTicksLeft);
+        yield return null;
     }
 }
