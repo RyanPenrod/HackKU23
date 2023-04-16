@@ -14,7 +14,7 @@ public class TimeTickSystem : MonoBehaviour {
 
     public float onTickFrequency;
 
-    private const float TICK_TIMER_MAX = 1f;
+    private const float TICK_TIMER_MAX = 0.1f;
 
     private int tick;
     private float tickTimer;
@@ -30,7 +30,9 @@ public class TimeTickSystem : MonoBehaviour {
             tickTimer -= TICK_TIMER_MAX;
             tick++;
             if (tick % onTickFrequency == 0) {
-                Debug.Log(tick);
+                if(tick % 10 == 0){
+                    Debug.Log(tick);
+                }
                 if (OnTick != null) OnTick(this, new OnTickEventArgs { tick = tick });
             }
         }
