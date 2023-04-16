@@ -17,6 +17,8 @@ public class GrowDirection : MonoBehaviour
 
     private void Update()
     {
+        var rotateSpeed = rotationSpeed;
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
             targetRotation = initialRotation * Quaternion.Euler(0f, 0f, -maxRotationAngle);
@@ -25,7 +27,10 @@ public class GrowDirection : MonoBehaviour
         {
             targetRotation = initialRotation * Quaternion.Euler(0f, 0f, maxRotationAngle);
         }
+        else{
+            rotateSpeed = 0f;
+        }
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
     }
 }

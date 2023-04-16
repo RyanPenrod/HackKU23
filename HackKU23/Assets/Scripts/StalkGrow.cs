@@ -19,6 +19,11 @@ public class StalkGrow : MonoBehaviour
 
     void Awake()
     {
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         // Initializtions
         canvas = GameObject.Find("Canvas");
         stalkManager = GameObject.Find("StalkManager");
@@ -26,11 +31,6 @@ public class StalkGrow : MonoBehaviour
         TimeTickSystem.OnTick += TimeTickSystem_OnTick;
         Camera.main.transform.position = transform.position;
         Camera.main.transform.position += new Vector3(-10, 0, -10);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         var arrow = Instantiate(stalkArrowPrefab, transform.position, transform.rotation);
         arrow.transform.parent = gameObject.transform;
         CheckGameOver();
@@ -55,7 +55,6 @@ public class StalkGrow : MonoBehaviour
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
-        Debug.Log("boost : " + stalkManager.transform.GetComponent<StalkManager>().activeSpeedBoost);
 
         if(stalkManager.transform.GetComponent<StalkManager>().activeSpeedBoost)
         {

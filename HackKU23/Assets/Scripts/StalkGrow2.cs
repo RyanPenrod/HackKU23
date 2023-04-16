@@ -19,16 +19,17 @@ public class StalkGrow2 : MonoBehaviour
 
     void Awake()
     {
-        // Initializtions
-        canvas = GameObject.Find("Canvas");
-        stalkManager = GameObject.Find("StalkManager2");
-        localTicks = 0;
-        TimeTickSystem.OnTick += TimeTickSystem_OnTick;
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        // Initializtions
+        canvas = GameObject.Find("Canvas");
+        stalkManager = GameObject.Find("StalkManager2");
+        localTicks = 0;
+        TimeTickSystem.OnTick += TimeTickSystem_OnTick;
         var arrow = Instantiate(stalkArrowPrefab, transform.position, transform.rotation);
         arrow.transform.parent = gameObject.transform;
         CheckGameOver();
@@ -53,7 +54,6 @@ public class StalkGrow2 : MonoBehaviour
 
     private void TimeTickSystem_OnTick(object sender, TimeTickSystem.OnTickEventArgs e)
     {
-        Debug.Log("boost : " + stalkManager.transform.GetComponent<StalkManager>().activeSpeedBoost);
 
         if(stalkManager.transform.GetComponent<StalkManager>().activeSpeedBoost)
         {
