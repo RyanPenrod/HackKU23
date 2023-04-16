@@ -56,6 +56,8 @@ public class StalkGrow : MonoBehaviour
     {
         if(localTicks == stalkManager.GetComponent<StalkManager>().ticksToGrow)
         {
+            SoundManagerScript.PlaySound("grow");
+
             // Get rotation from arrow
             Quaternion newRotation = transform.GetChild(1).transform.rotation;
 
@@ -91,6 +93,7 @@ public class StalkGrow : MonoBehaviour
     
     private IEnumerator TempSpeedUp()
     {
+        SoundManagerScript.PlaySound("crunch");
         stalkManager.GetComponent<StalkManager>().ticksToGrow = 5;
         stalkManager.GetComponent<StalkManager>().activeSpeedBoost = true;
         yield return new WaitForSeconds(speedBoostDuration);
